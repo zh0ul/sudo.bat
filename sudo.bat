@@ -21,21 +21,39 @@
 ::
 ::   sudo.bat del /Q "c:\some\folder\some-file.txt"
 ::
+:: - To copy a file:
+::
+::   sudo.bat copy /y "c:\from\folder\from-file.txt" "c:\to\folder\"
+:: or
+::   sudo.bat copy /y "c:\from\folder\from-file.txt" "c:\to\folder\to-file.txt"
+::
+:: - To force window to stay open after command, give /k as first argument:
+::
+::   sudo.bat /k dir
+:: or
+::   sudo.bat /k C:\Utils\Git\bin\bash.exe
+::
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 @ECHO OFF
 SET  TEMPFILE1=%TEMP%\sudo.%RANDOM%%RANDOM%%RANDOM%%RANDOM%%RANDOM%%RANDOM%.bat
 SET  ARGS=
 SET  ARG=
+SET  ARGTMP=
+SET  SLASHARGS=
 :GET_ARGS_LOOP
 SET  ARG=%1
-IF   NOT DEFINED ARG GOTO :GET_ARGS_AFTER
-SET  ARGS=%ARGS% %ARG%
+SET  ARGTMP=%~1
 SHIFT
+IF   NOT DEFINED ARG GOTO :GET_ARGS_AFTER
+IF   NOT DEFINED ARGS  IF "%ARGTMP:~0,1%" == "/" SET SLASHARGS=%SLASHARGS% %ARGTMP%
+IF   NOT DEFINED ARGS  IF "%ARGTMP:~0,1%" == "/" GOTO :GET_ARGS_LOOP
+SET  ARGS=%ARGS% %ARG%
 GOTO :GET_ARGS_LOOP
 :GET_ARGS_AFTER
 IF       DEFINED ARGS  SET ARGS=%ARGS:~1%
-IF       DEFINED ARGS  ECHO START "Sudo Command Prompt" /D "%CD%" %ARGS% ^^^&^^^& exit ^^^|^^^| exit>"%TEMPFILE1%"
-IF   NOT DEFINED ARGS  ECHO START "Sudo Command Prompt" /D "%CD%" cmd.exe>"%TEMPFILE1%"
+IF       DEFINED ARGS  IF NOT DEFINED SLASHARGS ( ECHO START "Sudo Command Prompt" /D "%CD%" %ARGS% ^^^&^^^& exit ^^^|^^^| exit 1>"%TEMPFILE1%" )
+IF       DEFINED ARGS  IF     DEFINED SLASHARGS ( ECHO START "Sudo Command Prompt" /D "%CD%" cmd.exe %SLASHARGS% %ARGS%>"%TEMPFILE1%" )
+IF   NOT DEFINED ARGS  ( ECHO START "Sudo Command Prompt" /D "%CD%" cmd.exe>"%TEMPFILE1%" )
 ECHO IF "%%ERRORLEVEL%%" == "1" START "Sudo Command Prompt" /D "%CD%" cmd.exe /C %ARGS%>>"%TEMPFILE1%"
 ECHO DEL /Q "%TEMPFILE1%">>"%TEMPFILE1%"
 ECHO EXIT>>"%TEMPFILE1%"
