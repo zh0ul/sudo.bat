@@ -17,6 +17,10 @@
 ::
 ::   sudo.bat c:\windows\system32\drivers\etc\hosts
 ::
+:: - To delete a file:
+::
+::   sudo.bat del /Q "c:\some\folder\some-file.txt"
+::
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 @ECHO OFF
 SET  ARGS=
