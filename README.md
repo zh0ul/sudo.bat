@@ -23,7 +23,7 @@
 
   sudo.bat copy /y "c:\from\folder\from-file.txt" "c:\to\folder\"
 
- or
+- Or
  
   sudo.bat copy /y "c:\from\folder\from-file.txt" "c:\to\folder\to-file.txt"
 
@@ -31,7 +31,7 @@
 
   sudo.bat /k dir
 
- or
+- Or
 
   sudo.bat /k C:\Utils\Git\bin\bash.exe
 
