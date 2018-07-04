@@ -24,13 +24,17 @@
 :: - To copy a file:
 ::
 ::   sudo.bat copy /y "c:\from\folder\from-file.txt" "c:\to\folder\"
-:: or
+::
+:: - To copy a file:
+::
 ::   sudo.bat copy /y "c:\from\folder\from-file.txt" "c:\to\folder\to-file.txt"
 ::
 :: - To force window to stay open after command, give /k as first argument:
 ::
 ::   sudo.bat /k dir
-:: or
+::
+:: - To force window to stay open after command, give /k as first argument:
+::
 ::   sudo.bat /k C:\Utils\Git\bin\bash.exe
 ::
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
