@@ -2,6 +2,8 @@
 
 - Put this file in any folder that is in your %PATH%
 - Can be used to open many types of URLs and files.
+- Leverages "User Account Control" ( UAC )
+- Cleans up after itself.
 
 # Examples:
 
@@ -13,6 +15,10 @@
 
   sudo.bat c:\windows\system32\drivers\etc\hosts
 
+- To delete a file:
+
+  sudo.bat del /Q "c:\some\folder\some-file.txt"
+
 # Sudo.bat
 
 ```
@@ -23,6 +29,7 @@
 :: - Put this file in any folder that is in your %PATH%
 :: - Can be used to open many types of URLs and files.
 :: - Leverages "User Account Control" ( UAC )
+:: - Cleans up after itself.
 ::
 :: - Examples:
 ::
@@ -33,6 +40,10 @@
 :: - To open hosts file for editing:
 ::
 ::   sudo.bat c:\windows\system32\drivers\etc\hosts
+::
+:: - To delete a file:
+::
+::   sudo.bat del /Q "c:\some\folder\some-file.txt"
 ::
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 @ECHO OFF
