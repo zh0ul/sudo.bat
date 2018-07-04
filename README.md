@@ -47,6 +47,7 @@
 ::
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 @ECHO OFF
+SET  TEMPFILE1=%TEMP%\sudo.%RANDOM%%RANDOM%%RANDOM%%RANDOM%%RANDOM%%RANDOM%.bat
 SET  ARGS=
 SET  ARG=
 :GET_ARGS_LOOP
@@ -57,11 +58,12 @@ SHIFT
 GOTO :GET_ARGS_LOOP
 :GET_ARGS_AFTER
 IF       DEFINED ARGS  SET ARGS=%ARGS:~1%
-IF   NOT DEFINED ARGS  SET ARGS=cmd.exe
-SET  TEMPFILE1=%TEMP%\sudo.%RANDOM%%RANDOM%%RANDOM%%RANDOM%%RANDOM%%RANDOM%.bat
-ECHO START "Sudo Command Prompt" /D "%CD%" cmd.exe /c %ARGS%>"%TEMPFILE1%"
+IF       DEFINED ARGS  ECHO START "Sudo Command Prompt" /D "%CD%" %ARGS% ^^^&^^^& exit ^^^|^^^| exit>"%TEMPFILE1%"
+IF   NOT DEFINED ARGS  ECHO START "Sudo Command Prompt" /D "%CD%" cmd.exe>"%TEMPFILE1%"
+ECHO IF "%%ERRORLEVEL%%" == "1" START "Sudo Command Prompt" /D "%CD%" cmd.exe /C %ARGS%>>"%TEMPFILE1%"
+ECHO EXIT>>"%TEMPFILE1%"
 ECHO DEL /Q "%TEMPFILE1%">>"%TEMPFILE1%"
-ECHO #### ^%%TEMPFILE1^%% = %TEMPFILE1%
+ECHO #### %%TEMPFILE1%% = %TEMPFILE1%
 TYPE "%TEMPFILE1%"
 powershell.exe -Command "Start-Process \"%TEMPFILE1%\" -Verb RunAs"
 ```
