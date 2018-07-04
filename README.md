@@ -5,13 +5,13 @@
 
 # Examples:
 
-# To open hosts file for editing:
+- To open admin command prompt:
 
-   sudo c:\windows\system32\drivers\etc\hosts
+  sudo.bat
 
-# To open command prompt:
+- To open hosts file for editing:
 
-   sudo cmd
+  sudo.bat c:\windows\system32\drivers\etc\hosts
 
 # Sudo.bat
 
@@ -24,13 +24,13 @@
 :: - Can be used to open many types of URLs and files.
 :: - Examples:
 ::
-::   To open hosts file for editing:
+:: - To open admin command prompt:
 ::
-::     sudo c:\windows\system32\drivers\etc\hosts
+::   sudo.bat
 ::
-::   To open command prompt:
+:: - To open hosts file for editing:
 ::
-::     sudo cmd
+::   sudo.bat c:\windows\system32\drivers\etc\hosts
 ::
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 @ECHO OFF
