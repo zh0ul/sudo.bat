@@ -19,6 +19,22 @@
 
   sudo.bat del /Q "c:\some\folder\some-file.txt"
 
+- To copy a file:
+
+  sudo.bat copy /y "c:\from\folder\from-file.txt" "c:\to\folder\"
+
+ or
+ 
+  sudo.bat copy /y "c:\from\folder\from-file.txt" "c:\to\folder\to-file.txt"
+
+- To force window to stay open after command, give /k as first argument:
+
+  sudo.bat /k dir
+
+ or
+
+  sudo.bat /k C:\Utils\Git\bin\bash.exe
+
 # Sudo.bat
 
 ```
